@@ -4,11 +4,15 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import './assets/styles/reset.css'
 import './assets/styles/border.css'
 import './assets/fonts/iconfont.css'
+// 使用vue-awesome-swiper同时需引入对应的css文件
+import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
+Vue.use(VueAwesomeSwiper)
 
 new Vue({
   router,
