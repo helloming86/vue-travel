@@ -4,9 +4,9 @@
       <swiper-slide v-for="(page, index) of navPages" :key="index">
         <div class="nav-icon" v-for="item of page" :key="item.id">
           <div class="icon-img">
-            <img class="icon-img-content" :src="item.iconUrl" alt="navicon">
+            <img class="icon-img-content" :src="item.imgUrl" alt="navicon">
           </div>
-          <p class="icon-desc">{{item.iconDesc}}</p>
+          <p class="icon-desc">{{item.desc}}</p>
         </div>
       </swiper-slide>
     </swiper>
@@ -16,61 +16,15 @@
 <script type="text/ecmascript-6">
 export default {
   name: 'HomeNav',
-  data () {
-    return {
-      iconList: [{
-        id: "0001",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "超级长名字的热门景点1"
-      },
-      {
-        id: "0002",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点2"
-      },
-      {
-        id: "0003",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点3"
-      },
-      {
-        id: "0004",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点4"
-      },
-      {
-        id: "0005",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点5"
-      },
-      {
-        id: "0006",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点6"
-      },
-      {
-        id: "0007",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点7"
-      },
-      {
-        id: "0008",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点8"
-      },
-      {
-        id: "0009",
-        iconUrl: "http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png",
-        iconDesc: "热门景点9"
-      }]
-    }
+  props: {
+    list: Array
   },
   computed: {
     navPages () {
       // 定义块级作用域常量pages
       // js中 const 定义的块级作用于常量为对象或者数组时，可以修改
       const pages = []
-      this.iconList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8)
           if(!pages[page]) {
             pages[page] = []

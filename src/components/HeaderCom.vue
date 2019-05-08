@@ -8,7 +8,7 @@
       <data>输入城市景点/游玩主题</data>
     </div>
     <div class="header-right">
-      <data>城市</data>
+      <data>{{this.city}}</data>
       <span class="iconfont gps-icon">&#xeb95;</span>
     </div>
   </header>
@@ -16,7 +16,10 @@
 
 <script type="text/ecmascript-6">
 export default {
-  name: 'HeaderCom'
+  name: 'HeaderCom',
+  props: {
+    city: String
+  }
 }
 </script>
 <style lang="stylus" scoped>

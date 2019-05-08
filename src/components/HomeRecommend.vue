@@ -4,11 +4,11 @@
       热门推荐
     </div>
     <ul>
-      <li class="recommend-item border-bottom" v-for="item of recommondList" :key="item.id">
-        <img class="item-img" :src="item.itemImgUrl" alt="推荐1">
+      <li class="recommend-item border-bottom" v-for="item of list" :key="item.id">
+        <img class="item-img" :src="item.imgUrl" alt="推荐1">
         <div class="item-info">
-          <p class="item-title">{{item.itemTitle}}</p>
-          <p class="item-desc">{{item.itemDesc}}</p>
+          <p class="item-title">{{item.title}}</p>
+          <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
       </li>
@@ -19,27 +19,8 @@
 <script type="text/ecmascript-6">
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommondList: [{
-        id: "0001",
-        itemImgUrl: "http://img1.qunarzz.com/sight/p0/1709/e9/e9b7ae23f567806ea3.img.jpg_200x200_bf985a3d.jpg",
-        itemTitle: "推荐项目一标题",
-        itemDesc: "We need to navigate the optical HDD firewall!"
-      },
-      {
-        id: "0002",
-        itemImgUrl: "http://img1.qunarzz.com/sight/p0/1709/e9/e9b7ae23f567806ea3.img.jpg_200x200_bf985a3d.jpg",
-        itemTitle: "推荐项目二标题",
-        itemDesc: "We need to navigate the optical HDD firewall!水电费水电费是打发第三方士大夫的沙发斯蒂芬斯蒂芬"
-      },
-      {
-        id: "0003",
-        itemImgUrl: "http://img1.qunarzz.com/sight/p0/1709/e9/e9b7ae23f567806ea3.img.jpg_200x200_bf985a3d.jpg",
-        itemTitle: "推荐项目三标题",
-        itemDesc: "We need to navigate the optical HDD firewall!"
-      }]
-    }
+  props: {
+    list: Array
   }
 }
 
