@@ -3,7 +3,8 @@
     <HeaderCom></HeaderCom>
     <HomeSwiper></HomeSwiper>
     <HomeNav></HomeNav>
-    <div>test</div>
+    <HomeRecommend></HomeRecommend>
+    <HomeWeekend></HomeWeekend>
   </div>
 </template>
 
@@ -13,13 +14,17 @@
 import HeaderCom from '@/components/HeaderCom.vue'
 import HomeSwiper from '@/components/HomeSwiper.vue'
 import HomeNav from '@/components/HomeNav.vue'
+import HomeRecommend from '@/components/HomeRecommend.vue'
+import HomeWeekend from '@/components/HomeWeekend.vue'
 
 export default {
   name: 'Home',
   components: {
     HeaderCom,
     HomeSwiper,
-    HomeNav
+    HomeNav,
+    HomeRecommend,
+    HomeWeekend
   }
 }
 </script>
