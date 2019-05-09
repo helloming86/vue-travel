@@ -1,4 +1,5 @@
 <template>
+  <!--这里，这里为什么不能写成:ref  -->
   <div class="list" ref="wrapper">
     <div>
       <div class="area">
@@ -22,8 +23,11 @@
         </div>
       </div>
       <!-- 对象Object也可以使用v-for循环，但是循环的内容不是(item, index)而是(index, key) -->
-      <div class="area" v-for="(item, key) of cityList" :key="key">
+      <!-- 在循环中定义:ref，使用$refs得到的是一个数组，第一个元素才是DOM $refs[key][0] -->
+      <!-- 这里必须用:ref, 而不是ref -->
+      <div class="area" v-for="(item, key) of cityList" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
+        <!-- vue这里定义ref，可以获取DOM -->
         <div class="item-list" v-for="cityItem of item" :key="cityItem.id">
           <div class="item border-bottom">{{cityItem.name}}</div>
         </div>
@@ -39,10 +43,23 @@ export default {
   props: {
     nowCity: String,
     hotCity: Array,
+    cityAlp: String,
     cityList: Object
   },
   mounted () {
+    // 注意，这里this.$refs['wrapper']等同于this.$refs.wrapper
     this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  watch: {
+    cityAlp () {
+      // console.log(this.cityAlp)
+      if (this.cityAlp) {
+        // const element = this.$refs[this.cityAlp]
+        // console.log(element)
+        const element = this.$refs[this.cityAlp][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 

@@ -2,8 +2,11 @@
   <div>
     <CityHeader></CityHeader>
     <CitySearch></CitySearch>
-    <CityList :nowCity="currentCity" :hotCity="hotCity" :cityList="cityList"></CityList>
-    <CityAlphabet :cityList="cityList"></CityAlphabet>
+    <CityList :nowCity="currentCity" :hotCity="hotCity" :cityList="cityList" :cityAlp="cityAlp"></CityList>
+    <!-- 父组件City使用子组件 CityAlphabet-->
+    <!-- 子组件CityAlphabet，在内部处理中，使用$emit方法，向外触发事件，向父组件发送一些数据 -->
+    <!-- 父组件City，使用@方法，监听子组件定义的事件，这里是change事件-->
+    <CityAlphabet :cityList="cityList" @change="handleLetterChange"></CityAlphabet>
   </div>
 </template>
 
@@ -27,6 +30,7 @@ export default {
   data () {
     return {
       currentCity: '洛阳',
+      cityAlp: '',
       hotCity: [],
       cityList: {}
     }
@@ -44,6 +48,9 @@ export default {
         this.cityList = data.cities
       }
       // console.log(res)
+    },
+    handleLetterChange (letter) {
+      this.cityAlp = letter
     }
   },
   mounted () {
