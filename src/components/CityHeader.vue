@@ -24,6 +24,7 @@ export default {
   header
     display: flex
     // 设置从height改为line-height后，上下居中了
+    height: $headerHeight
     line-height: $headerHeight
     background: $bgColor
     color: #ffffff
