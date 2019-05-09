@@ -1,7 +1,7 @@
 <template>
   <ul class="list">
     <li class="item"
-      v-for="(item, key) of letters"
+      v-for="item of letters"
       :key="item"
       :ref="item"
       @touchstart="handleTouchStart"
@@ -31,8 +31,14 @@ export default {
   },
   data () {
     return {
-      touchStatus: false
+      touchStatus: false,
+      startY: 0,
+      timer: null
     }
+  },
+  updated () {
+    // 因为城市简码A的位置固定，所以，尽可能少的操作能够提升性能
+    this.startY = this.$refs['A'][0].offsetTop
   },
   methods: {
     // 当你执行点击操作是，定义的事件方法handleAlpClk会接收到一个点击到的事件对象，这里用e表示，当然你可以用其他比如abc
@@ -47,16 +53,22 @@ export default {
       if (this.touchStatus) {
         // 假设 obj 为某个 HTML 控件。
         // obj.offsetTop 指 obj 距离上方或上层控件的位置，整型，单位像素。
-        const startY = this.$refs['A'][0].offsetTop
+        // const startY = this.$refs['A'][0].offsetTop
         // console.log(startY)
-        // e.touches[0].clientY touch事件举例顶层的Y坐标
-        const touchY = e.touches[0].clientY - 83
-        // console.log(touchY)
-        const index = Math.floor((touchY - startY) / 20)
-        // console.log(index)
-        if (index >= 0 && index < this.letters.length) {
-          this.$emit('change', this.letters[index])
+        // 节流，限制函数执行频率，提升效率
+        if (this.timer) {
+          clearTimeout(this.timer)
         }
+        this.timer = setTimeout(() => {
+          // e.touches[0].clientY touch事件举例顶层的Y坐标
+          const touchY = e.touches[0].clientY - 83
+          // console.log(touchY)
+          const index = Math.floor((touchY - this.startY) / 20)
+          // console.log(index)
+          if (index >= 0 && index < this.letters.length) {
+            this.$emit('change', this.letters[index])
+          }
+        }, 16)
       }
     },
     handleTouchStop () {
