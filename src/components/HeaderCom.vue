@@ -7,10 +7,12 @@
       <span class="iconfont">&#xeb9c;</span>
       <data>输入城市景点/游玩主题</data>
     </div>
-    <div class="header-right">
-      <data>{{this.city}}</data>
-      <span class="iconfont gps-icon">&#xeb95;</span>
-    </div>
+    <router-link to='/city'>
+      <div class="header-right">
+        <data>{{this.city}}</data>
+        <span class="iconfont gps-icon">&#xeb95;</span>
+      </div>
+    </router-link>
   </header>
 </template>
 
@@ -33,7 +35,7 @@ export default {
   header
     display: flex
     // 设置从height改为line-height后，上下居中了
-    line-height: 2.688rem
+    line-height: $headerHeight
     background: $bgColor
     color: #ffffff
     .header-left
@@ -59,4 +61,5 @@ export default {
       width: 4.5rem
       float: right
       text-align: center
+      color #ffffff
 </style>
