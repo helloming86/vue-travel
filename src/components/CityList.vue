@@ -7,7 +7,7 @@
         </div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{this.nowCity}}</div>
           </div>
         </div>
       </div>
@@ -16,98 +16,16 @@
           热门城市
         </div>
         <div class="button-list">
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="button">北京</div>
+          <div class="button-wrapper" v-for="item of hotCity" :key="item.id">
+            <div class="button">{{item.name}}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
-        <div class="item-list">
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
-          <div class="item border-bottom">阿里尔</div>
+      <!-- 对象Object也可以使用v-for循环，但是循环的内容不是(item, index)而是(index, key) -->
+      <div class="area" v-for="(item, key) of cityList" :key="key">
+        <div class="title border-topbottom">{{key}}</div>
+        <div class="item-list" v-for="cityItem of item" :key="cityItem.id">
+          <div class="item border-bottom">{{cityItem.name}}</div>
         </div>
       </div>
     </div>
@@ -118,6 +36,11 @@
 import BScroll from 'better-scroll'
 export default {
   name: 'CityList',
+  props: {
+    nowCity: String,
+    hotCity: Array,
+    cityList: Object
+  },
   mounted () {
     this.scroll = new BScroll(this.$refs.wrapper)
   }

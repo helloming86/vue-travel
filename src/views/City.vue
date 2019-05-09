@@ -2,8 +2,8 @@
   <div>
     <CityHeader></CityHeader>
     <CitySearch></CitySearch>
-    <CityList></CityList>
-    <CityAlphabet></CityAlphabet>
+    <CityList :nowCity="currentCity" :hotCity="hotCity" :cityList="cityList"></CityList>
+    <CityAlphabet :cityList="cityList"></CityAlphabet>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ import CityHeader from '@/components/CityHeader.vue'
 import CitySearch from '@/components/CitySearch.vue'
 import CityList from '@/components/CityList.vue'
 import CityAlphabet from '@/components/CityAlphabet.vue'
+import axios from 'axios'
 
 export default {
   name: 'City',
@@ -22,6 +23,31 @@ export default {
     CitySearch,
     CityList,
     CityAlphabet
+  },
+  data () {
+    return {
+      currentCity: '洛阳',
+      hotCity: [],
+      cityList: {}
+    }
+  },
+  methods: {
+    getCityInfo () {
+      axios.get('/api/city.json')
+        .then(this.getCityInfoSucc)
+    },
+    getCityInfoSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        const data = res.data
+        this.hotCity = data.hotCities
+        this.cityList = data.cities
+      }
+      // console.log(res)
+    }
+  },
+  mounted () {
+    this.getCityInfo()
   }
 }
 
