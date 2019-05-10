@@ -8,7 +8,7 @@
         </div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{this.$store.state.city}}</div>
+            <div class="button">{{this.city}}</div>
           </div>
         </div>
       </div>
@@ -46,12 +46,18 @@
 
 <script type="text/ecmascript-6">
 import BScroll from 'better-scroll'
+// 当一个组件需要获取多个状态时候，将这些状态都声明为计算属性会有些重复和冗余
+// 使用mapState 辅助函数，帮助我们生成计算属性，优化代码
+import { mapState } from 'vuex'
 export default {
   name: 'CityList',
   props: {
     hotCity: Array,
     cityAlp: String,
     cityList: Object
+  },
+  computed: {
+    ...mapState(['city'])
   },
   methods: {
     handleCityClk: function (city) {
