@@ -1,12 +1,66 @@
 <template>
-  <div class="search">
-    <input type="text" class="search-input" placeholder="输入城市名或拼音" />
+  <div>
+    <div class="search">
+      <input type="text" class="search-input" placeholder="输入城市名或拼音" v-model="keywords" />
+    </div>
+    <div class="search-content" ref="search" v-show="keywords">
+      <ul>
+        <li class="search-result border-bottom" v-for="item in searchRes" :key="item.id">{{item.name}}</li>
+        <li class="search-result border-bottom" v-show="noSearchRes">没有找到对应的匹配项</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import BScroll from 'better-scroll'
 export default {
-  name: 'CitySearch'
+  name: 'CitySearch',
+  props: {
+    cities: Object
+  },
+  data () {
+    return {
+      keywords: '',
+      searchRes: [],
+      timer: null
+    }
+  },
+  computed: {
+    noSearchRes () {
+      return !this.searchRes.length
+    }
+  },
+  mounted () {
+    // 注意，这里this.$refs['wrapper']等同于this.$refs.wrapper
+    this.scroll = new BScroll(this.$refs.search)
+  },
+  watch: {
+    keywords () {
+      // 截流函数
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      if (!this.keywords) {
+        this.searchRes = []
+        // 下面的return是必须的，否则展示数据异常
+        return
+      }
+      this.timer = setTimeout(() => {
+        const result = []
+        for (let i in this.cities) {
+          this.cities[i].forEach((value) => {
+            if (value.spell.indexOf(this.keywords) > -1 ||
+                value.name.indexOf(this.keywords) > -1) {
+              result.push(value)
+              // console.log(result)
+            }
+          })
+        }
+        this.searchRes = result
+      }, 100)
+    }
+  }
 }
 
 </script>
@@ -32,5 +86,19 @@ export default {
       line-height: 2.125rem
       text-align: center
       border-radius: .125rem
+      color: #666666
+  .search-content
+    z-index: 1
+    overflow: hidden
+    position: absolute
+    top: 5.2rem
+    left: 0
+    right: 0
+    bottom: 0
+    background: #eeeeee
+    .search-result
+      line-height: 1.75rem
+      padding: .125rem
+      background: #ffffff
       color: #666666
 </style>

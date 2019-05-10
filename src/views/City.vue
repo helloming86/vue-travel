@@ -1,7 +1,7 @@
 <template>
   <div>
     <CityHeader></CityHeader>
-    <CitySearch></CitySearch>
+    <CitySearch :cities="cityList"></CitySearch>
     <CityList :nowCity="currentCity" :hotCity="hotCity" :cityList="cityList" :cityAlp="cityAlp"></CityList>
     <!-- 父组件City使用子组件 CityAlphabet-->
     <!-- 子组件CityAlphabet，在内部处理中，使用$emit方法，向外触发事件，向父组件发送一些数据 -->
