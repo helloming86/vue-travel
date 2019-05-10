@@ -5,7 +5,13 @@
     </div>
     <div class="search-content" ref="search" v-show="keywords">
       <ul>
-        <li class="search-result border-bottom" v-for="item in searchRes" :key="item.id">{{item.name}}</li>
+        <li class="search-result border-bottom"
+          v-for="item in searchRes"
+          :key="item.id"
+          @click="handleCityClk(item.name)"
+        >
+          {{item.name}}
+        </li>
         <li class="search-result border-bottom" v-show="noSearchRes">没有找到对应的匹配项</li>
       </ul>
     </div>
@@ -30,10 +36,6 @@ export default {
     noSearchRes () {
       return !this.searchRes.length
     }
-  },
-  mounted () {
-    // 注意，这里this.$refs['wrapper']等同于this.$refs.wrapper
-    this.scroll = new BScroll(this.$refs.search)
   },
   watch: {
     keywords () {
@@ -60,6 +62,16 @@ export default {
         this.searchRes = result
       }, 100)
     }
+  },
+  methods: {
+    handleCityClk (city) {
+      this.$store.dispatch('changeCity', city)
+      this.$router.push({ path: '/' })
+    }
+  },
+  mounted () {
+    // 注意，这里this.$refs['wrapper']等同于this.$refs.wrapper
+    this.scroll = new BScroll(this.$refs.search, { click: true })
   }
 }
 

@@ -8,7 +8,7 @@
         </div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{this.nowCity}}</div>
+            <div class="button">{{this.$store.state.city}}</div>
           </div>
         </div>
       </div>
@@ -17,8 +17,12 @@
           热门城市
         </div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item of hotCity" :key="item.id">
-            <div class="button">{{item.name}}</div>
+          <div class="button-wrapper"
+            v-for="item of hotCity"
+            :key="item.id"
+            @click="handleCityClk(item.name)"
+          >
+            <div class="button" >{{item.name}}</div>
           </div>
         </div>
       </div>
@@ -28,7 +32,11 @@
       <div class="area" v-for="(item, key) of cityList" :key="key" :ref="key">
         <div class="title border-topbottom">{{key}}</div>
         <!-- vue这里定义ref，可以获取DOM -->
-        <div class="item-list" v-for="cityItem of item" :key="cityItem.id">
+        <div class="item-list"
+          v-for="cityItem of item"
+          :key="cityItem.id"
+          @click="handleCityClk(cityItem.name)"
+        >
           <div class="item border-bottom">{{cityItem.name}}</div>
         </div>
       </div>
@@ -41,14 +49,18 @@ import BScroll from 'better-scroll'
 export default {
   name: 'CityList',
   props: {
-    nowCity: String,
     hotCity: Array,
     cityAlp: String,
     cityList: Object
   },
-  mounted () {
-    // 注意，这里this.$refs['wrapper']等同于this.$refs.wrapper
-    this.scroll = new BScroll(this.$refs.wrapper)
+  methods: {
+    handleCityClk: function (city) {
+      // 点击事件的目的是切换城市，想要改变city，根据vuex的规则
+      // 需要仓库（$store）派发/触发（dispatch）一个指令（actions），经新的city数据传递过去
+      // 此处的actions为changeCity
+      this.$store.dispatch('changeCity', city)
+      this.$router.push({ path: '/' })
+    }
   },
   watch: {
     cityAlp () {
@@ -60,6 +72,11 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
+  },
+  mounted () {
+    // 注意，这里this.$refs['wrapper']等同于this.$refs.wrapper
+    // Bscroll 默认阻止点击事件，所以，为了能够点击本业的city，需要放开限制
+    this.scroll = new BScroll(this.$refs.wrapper, { click: true })
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderCom :city="city"></HeaderCom>
+    <HomeHeader></HomeHeader>
     <HomeSwiper :list="swiperList"></HomeSwiper>
     <HomeNav :list="iconList"></HomeNav>
     <HomeRecommend :list="recommendList"></HomeRecommend>
@@ -11,7 +11,7 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import HeaderCom from '@/components/HeaderCom.vue'
+import HomeHeader from '@/components/HomeHeader.vue'
 import HomeSwiper from '@/components/HomeSwiper.vue'
 import HomeNav from '@/components/HomeNav.vue'
 import HomeRecommend from '@/components/HomeRecommend.vue'
@@ -21,7 +21,7 @@ import axios from 'axios'
 export default {
   name: 'Home',
   components: {
-    HeaderCom,
+    HomeHeader,
     HomeSwiper,
     HomeNav,
     HomeRecommend,
@@ -29,7 +29,6 @@ export default {
   },
   data () {
     return {
-      city: '洛阳',
       swiperList: [],
       iconList: [],
       recommendList: [],
@@ -45,7 +44,6 @@ export default {
       res = res.data
       if (res.ret && res.data) {
         const data = res.data
-        this.city = data.city
         this.swiperList = data.swiperList
         this.iconList = data.iconList
         this.recommendList = data.recommendList

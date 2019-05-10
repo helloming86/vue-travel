@@ -9,7 +9,7 @@
     </div>
     <router-link to='/city'>
       <div class="header-right">
-        <data>{{this.city}}</data>
+        <data>{{this.$store.state.city}}</data>
         <span class="iconfont gps-icon">&#xeb95;</span>
       </div>
     </router-link>
@@ -18,10 +18,7 @@
 
 <script type="text/ecmascript-6">
 export default {
-  name: 'HeaderCom',
-  props: {
-    city: String
-  }
+  name: 'HomeHeader'
 }
 </script>
 <style lang="stylus" scoped>
@@ -58,7 +55,7 @@ export default {
       border-radius: 0.188rem
       color: #cccccc
     .header-right
-      width: 4.5rem
+      mix-width: 4.5rem
       float: right
       text-align: center
       color #ffffff
