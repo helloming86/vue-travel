@@ -9,7 +9,7 @@
     </div>
     <router-link to='/city'>
       <div class="header-right">
-        <data>{{this.doubleCity}}</data>
+        <data>{{this.currentCity}}</data>
         <span class="iconfont gps-icon">&#xeb95;</span>
       </div>
     </router-link>
