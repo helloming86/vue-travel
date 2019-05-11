@@ -10,16 +10,20 @@
         </div>
       </div>
     </div>
-    <common-gallery class="detail-gallery" :imgs="gallaryImgs" v-show="showGallery" @close="handleCloseGallery"></common-gallery>
+    <CommonFade>
+      <common-gallery class="detail-gallery" :imgs="gallaryImgs" v-show="showGallery" @close="handleCloseGallery"></common-gallery>
+    </CommonFade>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import CommonGallery from '@/components/CommonGallery.vue'
+import CommonFade from '@/components/CommonFade.vue'
 export default {
   name: 'DetailBanner',
   components: {
-    CommonGallery
+    CommonGallery,
+    CommonFade
   },
   props: {
     sightName: String,
