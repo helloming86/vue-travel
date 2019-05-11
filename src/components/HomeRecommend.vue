@@ -4,14 +4,20 @@
       热门推荐
     </div>
     <ul>
-      <li class="recommend-item border-bottom" v-for="item of list" :key="item.id">
+      <router-link
+        tag="li"
+        class="recommend-item border-bottom"
+        v-for="item of list"
+        :key="item.id"
+        :to="`/detail/` + item.id"
+      >
         <img class="item-img" :src="item.imgUrl" alt="推荐1">
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
           <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
-      </li>
+      </router-link>
     </ul>
   </main>
 </template>
@@ -27,7 +33,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import "~@/assets/styles/mixins.styl"  
+  @import "~@/assets/styles/mixins.styl"
   .recommend-title
     margin-top: .5rem
     line-height: 2.5rem

@@ -20,6 +20,12 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "City" */ './views/City.vue')
+    },
+    {
+      // 使用了“：”设置动态路由，前面的detail是固定的，后面的id是可变的
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import(/* webpackChunkName: "Details" */ './views/Details.vue')
     }
   ]
 })
