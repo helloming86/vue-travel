@@ -34,7 +34,7 @@ export default {
       .back-icon
         display: block
         text-align: center
-        font-size: 1.25rem
+        font-size: 1.5rem
         color: #ffffff
     .header-right
       flex: 1
