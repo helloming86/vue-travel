@@ -5,7 +5,6 @@
       to='/'
       class="header-abs"
       v-show="showAbs"
-      :style="opacityStyle"
     >
       <span class="iconfont header-abs-back">&#xeb99;</span>
     </router-link>
@@ -14,7 +13,7 @@
       v-show="!showAbs"
       :style="opacityStyle"
     >
-      <span class="iconfont header-fixed-back">&#xeb99;</span>
+      <router-link tag="span" to='/' class="iconfont header-fixed-back">&#xeb99;</router-link>
       <data>景点详情</data>
     </div>
   </div>
@@ -50,6 +49,11 @@ export default {
   activated () {
     // 窗口监听事件，当窗口滚动scroll时，执行handlesCroll方法
     window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () {
+    // 页面即将被替换成新的页面的时候，该钩子生效
+    // 解除全局组件绑定
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 
@@ -69,7 +73,6 @@ export default {
     text-align: center
     background: rgba(0, 0, 0, .8)
     .header-abs-back
-      display: block
       font-size: 1.5rem
       color: #ffffff
   .header-fixed

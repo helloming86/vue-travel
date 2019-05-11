@@ -38,26 +38,29 @@ export default {
   @import '~@/assets/styles/varibles.styl'
   header
     display: flex
-    // 设置从height改为line-height后，上下居中了
+    height: $headerHeight
     line-height: $headerHeight
+    text-align: center
     background: $bgColor
     color: #ffffff
     .header-left
       width: 2.000rem
+      position relative
+      left: .5rem
       float: left
       .back-icon
         display: block
         text-align: center
-        font-size: 1.25rem
+        font-size: 1.5rem
     .header-center
       flex: 1
       height: 2rem
       line-height: 2rem
-      margin-top: .313rem
-      margin-left: .625rem
-      margin-right: .625rem
-      margin-bottom: .375rem
-      padding-left: .125rem
+      margin-top: .25rem
+      margin-left: .5rem
+      margin-right: .5rem
+      margin-bottom: .25rem
+      padding: .25rem
       background: #ffffff
       border-radius: 0.188rem
       color: #cccccc
