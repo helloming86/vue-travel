@@ -8,10 +8,11 @@
         <span class="item-title-icon"></span>
         {{item.title}}
       </div>
-      <!-- 递归循环： 组件自身调用自身-->
-      <!-- 如果循环项item下面还有内容children，进行递归循环，使用组件自身template获取并渲染children的内容->
-      <!-- 1.使用DetailList执行递归 2.将item.children与plist进行绑定 -->
-      <!-- 本例，是个三级嵌套 -->
+      <!-- 递归循环： 组件自身调用自身
+        如果循环项item下面还有内容children，进行递归循环，使用组件自身template获取并渲染children的内容
+        1.使用DetailList执行递归 2.将item.children与plist进行绑定
+        本例，是个三级嵌套
+      -->
       <div v-if="item.children" class="item-children">
         <DetailList :plist="item.children"></DetailList>
       </div>
