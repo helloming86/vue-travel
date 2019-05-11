@@ -62,6 +62,7 @@ export default {
     this.getHomeInfo()
   },
   activated () {
+    // 使用keep-alive后，只刷一次，所以，使用activated来处理什么时候刷新获取数据
     if (this.lastCity !== this.city) {
       this.lastCity = this.city
       this.getHomeInfo()

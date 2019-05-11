@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     handleScroll () {
-      // console.log(document.documentElement.scrollTop)
+      console.log(document.documentElement.scrollTop)
       const top = document.documentElement.scrollTop
       if (top > 48) {
         // 注意：这里用let，而不是const
@@ -53,6 +53,13 @@ export default {
   deactivated () {
     // 页面即将被替换成新的页面的时候，该钩子生效
     // 解除全局组件绑定
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  // 组件不使用keep-alive，activated 和  deactivated 就会失效，需要使用mounted和beforeDestroyed代替
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }

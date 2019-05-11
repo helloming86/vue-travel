@@ -27,5 +27,9 @@ export default new Router({
       name: 'detail',
       component: () => import(/* webpackChunkName: "Details" */ './views/Details.vue')
     }
-  ]
+  ],
+  // 每次做路由切换时，都让x 和 y 轴的位置重置为0
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
