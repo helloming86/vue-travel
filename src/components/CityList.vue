@@ -8,7 +8,7 @@
         </div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{this.city}}</div>
+            <div class="button">{{ this.city }}</div>
           </div>
         </div>
       </div>
@@ -17,12 +17,13 @@
           热门城市
         </div>
         <div class="button-list">
-          <div class="button-wrapper"
+          <div
+            class="button-wrapper"
             v-for="item of hotCity"
             :key="item.id"
             @click="handleCityClk(item.name)"
           >
-            <div class="button" >{{item.name}}</div>
+            <div class="button">{{ item.name }}</div>
           </div>
         </div>
       </div>
@@ -30,14 +31,15 @@
       <!-- 在循环中定义:ref，使用$refs得到的是一个数组，第一个元素才是DOM $refs[key][0] -->
       <!-- 这里必须用:ref, 而不是ref -->
       <div class="area" v-for="(item, key) of cityList" :key="key" :ref="key">
-        <div class="title border-topbottom">{{key}}</div>
+        <div class="title border-topbottom">{{ key }}</div>
         <!-- vue这里定义ref，可以获取DOM -->
-        <div class="item-list"
+        <div
+          class="item-list"
           v-for="cityItem of item"
           :key="cityItem.id"
           @click="handleCityClk(cityItem.name)"
         >
-          <div class="item border-bottom">{{cityItem.name}}</div>
+          <div class="item border-bottom">{{ cityItem.name }}</div>
         </div>
       </div>
     </div>
@@ -85,49 +87,48 @@ export default {
     this.scroll = new BScroll(this.$refs.wrapper, { click: true })
   }
 }
-
 </script>
 
 <style lang="stylus" scoped>
-  @import '~@/assets/styles/varibles.styl'
+@import '~@/assets/styles/varibles.styl'
 
-  .border-topbottom
-    &:before
-      border-color: #cccccc
-    &:after
-      border-color: #cccccc
-  .border-bottom
-    &:before
-      border-color: #cccccc
-  .list
-    overflow hidden
-    position absolute
-    top: 5.2rem
-    left: 0
-    right: 0
-    bottom: 0
-    // background red
-    .title
+.border-topbottom
+  &:before
+    border-color: #cccccc
+  &:after
+    border-color: #cccccc
+.border-bottom
+  &:before
+    border-color: #cccccc
+.list
+  overflow hidden
+  position absolute
+  top: 5.2rem
+  left: 0
+  right: 0
+  bottom: 0
+  // background red
+  .title
+    line-height: 1.5rem
+    background: #eeeeee
+    padding-left: .25rem
+    color: #666666
+    font-size: 1.25rem
+  .button-list
+    overflow: hidden
+    padding: .125rem 1.875rem .125rem .125rem
+    .button-wrapper
+      float: left
+      width: 33.33%
+      .button
+        margin: .125rem
+        padding: .125rem 0
+        text-align: center
+        border: .063rem solid #cccccc
+        border-radius .125rem
+  .item-list
+    .item
       line-height: 1.5rem
-      background: #eeeeee
-      padding-left: .25rem
       color: #666666
-      font-size: 1.25rem
-    .button-list
-      overflow: hidden
-      padding: .125rem 1.875rem .125rem .125rem
-      .button-wrapper
-        float: left
-        width: 33.33%
-        .button
-          margin: .125rem
-          padding: .125rem 0
-          text-align: center
-          border: .063rem solid #cccccc
-          border-radius .125rem
-    .item-list
-      .item
-        line-height: 1.5rem
-        color: #666666
-        padding-left: .125rem
+      padding-left: .125rem
 </style>

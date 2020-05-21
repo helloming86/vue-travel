@@ -1,6 +1,10 @@
 <template>
   <div>
-    <DetailBanner :sightName="sightName" :gallaryImgs="gallaryImgs" :bannerImg="bannerImg"></DetailBanner>
+    <DetailBanner
+      :sightName="sightName"
+      :gallaryImgs="gallaryImgs"
+      :bannerImg="bannerImg"
+    ></DetailBanner>
     <DetailHeader></DetailHeader>
     <div class="content">
       <DetailList :plist="list"></DetailList>
@@ -57,6 +61,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .content
-    height: 100rem
+.content
+  height: 100rem
 </style>

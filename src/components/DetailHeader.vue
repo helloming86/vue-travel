@@ -1,19 +1,12 @@
 <template>
   <div>
-    <router-link
-      tag="div"
-      to='/'
-      class="header-abs"
-      v-show="showAbs"
-    >
+    <router-link tag="div" to="/" class="header-abs" v-show="showAbs">
       <span class="iconfont header-abs-back">&#xeb99;</span>
     </router-link>
-    <div
-      class="header-fixed"
-      v-show="!showAbs"
-      :style="opacityStyle"
-    >
-      <router-link tag="span" to='/' class="iconfont header-fixed-back">&#xeb99;</router-link>
+    <div class="header-fixed" v-show="!showAbs" :style="opacityStyle">
+      <router-link tag="span" to="/" class="iconfont header-fixed-back"
+        >&#xeb99;</router-link
+      >
       <data>景点详情</data>
     </div>
   </div>
@@ -63,12 +56,36 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
-
 </script>
 
 <style lang="stylus" scoped>
-  @import '~@/assets/styles/varibles.styl'
-  .header-abs
+@import '~@/assets/styles/varibles.styl'
+.header-abs
+  position: absolute
+  left: .5rem
+  top: .5rem
+  width: 2rem
+  height: 2rem
+  line-height: 2rem
+  border-radius: 1rem
+  text-align: center
+  background: rgba(0, 0, 0, .8)
+  .header-abs-back
+    font-size: 1.5rem
+    color: #ffffff
+.header-fixed
+  z-index: 2
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  height: $headerHeight
+  line-height: $headerHeight
+  text-align: center
+  background: $bgColor
+  color: #ffffff
+  .header-fixed-back
+    display: block
     position: absolute
     left: .5rem
     top: .5rem
@@ -77,31 +94,6 @@ export default {
     line-height: 2rem
     border-radius: 1rem
     text-align: center
-    background: rgba(0, 0, 0, .8)
-    .header-abs-back
-      font-size: 1.5rem
-      color: #ffffff
-  .header-fixed
-    z-index: 2
-    position: fixed
-    left: 0
-    right: 0
-    top: 0
-    height: $headerHeight
-    line-height: $headerHeight
-    text-align: center
-    background: $bgColor
+    font-size: 1.5rem
     color: #ffffff
-    .header-fixed-back
-      display: block
-      position: absolute
-      left: .5rem
-      top: .5rem
-      width: 2rem
-      height: 2rem
-      line-height: 2rem
-      border-radius: 1rem
-      text-align: center
-      font-size: 1.5rem
-      color: #ffffff
 </style>

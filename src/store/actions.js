@@ -1,6 +1,6 @@
 export default {
-  changeCity (ctx, city) {
+  changeCity(ctx, city) {
     // console.log(city)
-    ctx.commit('mchangeCity', city)
+    ctx.commit("mchangeCity", city);
   }
-}
+};

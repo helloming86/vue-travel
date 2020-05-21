@@ -2,11 +2,19 @@
   <div>
     <CityHeader></CityHeader>
     <CitySearch :cities="cityList"></CitySearch>
-    <CityList :nowCity="currentCity" :hotCity="hotCity" :cityList="cityList" :cityAlp="cityAlp"></CityList>
+    <CityList
+      :nowCity="currentCity"
+      :hotCity="hotCity"
+      :cityList="cityList"
+      :cityAlp="cityAlp"
+    ></CityList>
     <!-- 父组件City使用子组件 CityAlphabet-->
     <!-- 子组件CityAlphabet，在内部处理中，使用$emit方法，向外触发事件，向父组件发送一些数据 -->
     <!-- 父组件City，使用@方法，监听子组件定义的事件，这里是change事件-->
-    <CityAlphabet :cityList="cityList" @change="handleLetterChange"></CityAlphabet>
+    <CityAlphabet
+      :cityList="cityList"
+      @change="handleLetterChange"
+    ></CityAlphabet>
   </div>
 </template>
 
@@ -57,8 +65,6 @@ export default {
     this.getCityInfo()
   }
 }
-
 </script>
 
-<style lang="stylus" scoped>
-</style>
+<style lang="stylus" scoped></style>

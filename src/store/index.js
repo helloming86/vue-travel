@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   // state: state  ES6中可以简写为state
-  // gettes 可以理解为vuex的计算属性
+  // getters 可以理解为vuex的计算属性
   state,
   mutations,
   actions,
